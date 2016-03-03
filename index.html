@@ -1,0 +1,459 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>The Form Book Predicts</title>
+	<link rel="stylesheet" href="themes/bet_penguin.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="js_css/jquery.mobile.structure-1.4.5.min.css" />
+    <script src="js_css/jquery-1.11.1.min.js"></script>
+    <script src="js_css/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js_css/wolftie.js"></script>
+    <script src="js_css/app_functions.js"></script>
+</head>
+<body>
+	<div data-role="page" id="fixtures_page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<span class="header_logo my_font large_font">The Form Book Predicts</span><br/>
+            <span class="header_logo my_font small_font">The Premier League, Football League &amp; Conference</span>
+         <a href="#fixture_menu_panel" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-btn-icon-right ui-icon-bars ui-btn-icon-notext" >Menu</a>
+		</div>
+		<div data-role="content" id="fixtures_content" data-theme="a">
+			
+            <div id="main_loading_screen" class="loading_the_data"><span id="loading_text">LOADING DATA...</span></div>
+             <div id="ajax_loading_screen" class="loading_the_data"><span id="loading_text">LOADING DATA...</span></div>
+             
+            <div class="split_box my_font">
+            	<div class="left_div content_heading ">FIXTURES</div>
+                <div class="right_div content_sub_heading mydate_head">SATURDAY, 13th JUNE 2015</div>
+            </div>
+            
+            
+            <div class="sub_heading my_font small_font"><span id="fixtures_list_heading" data-leaguename="prem">PREMIER LEAGUE</span><a href="#fixtures_popup_leagues"  data-rel="popup" data-transition="pop"  class="ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-icon-carat-d ui-btn-icon-notext" >Leagues</a>
+               
+             <div data-role="popup" id="fixtures_popup_leagues" class="ui-content" data-theme="b" data-arrow="t">
+             <p><ul data-role="listview" >
+                  <li><a href="#fixtures_list_heading" onClick="fixture_list_mainpage('premier')">PREMIER LEAGUE</a></li>
+                  <li><a href="#fixtures_list_heading" onClick="fixture_list_mainpage('champ')">CHAMPIONSHIP</a></li>
+                  <li><a href="#fixtures_list_heading" onClick="fixture_list_mainpage('league1')">LEAGUE 1</a></li>
+                  <li><a href="#fixtures_list_heading" onClick="fixture_list_mainpage('league2')">LEAGUE 2</a></li>
+                  <li><a href="#fixtures_list_heading" onClick="fixture_list_mainpage('conference')">CONFERENCE</a></li>
+             </ul></p>
+            </div>
+    
+            </div>
+            
+            <div id="_fixture_data" class="fixture_content fixture_font"><p></p></div>
+            
+            
+		</div>
+        
+        <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="fixture_menu_panel" data-theme="b">
+                            <!-- panel content goes here -->
+              <center>Navigation</center>
+            				<div class="panel_menu_icon_wrapper" onClick="panel_change_page('prediction')" ><div class="panel_menu_img"><img src="imgs/prediction.png" /></div><div class="panel_menu_text">PREDICTIONS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('fixtures')" ><div class="panel_menu_img"><img src="imgs/fixtures.png" /></div><div class="panel_menu_text">FIXTURES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('results')" ><div class="panel_menu_img"><img src="imgs/results.png" /></div><div class="panel_menu_text">RESULTS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('tables')" ><div class="panel_menu_img"><img src="imgs/league.png" /></div><div class="panel_menu_text">TABLES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('teams')" ><div class="panel_menu_img"><img src="imgs/teams.png" /></div><div class="panel_menu_text">TEAMS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('analytics')" ><div class="panel_menu_img"><img src="imgs/analytics.png" /></div><div class="panel_menu_text">ANALYTICS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('about')" ><div class="panel_menu_img"><img src="imgs/about.png" /></div><div class="panel_menu_text">ABOUT</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="refresh_data()" ><div class="panel_menu_img"><img src="imgs/refresh.png" /></div><div class="panel_menu_text">REFRESH DATA</div></div>
+                            <div class="clear_line"> <p class="updated_text"></p></div>
+                           
+            </div><!-- /panel -->
+	</div><!-- /fixtures -->
+    
+    
+    
+    
+    
+    
+    
+    
+    <div data-role="page" id="results_page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<span class="header_logo my_font large_font">The Form Book Predicts</span><br/>
+            <span class="header_logo my_font small_font">The Premier League, Football League &amp; Conference</span>
+         <a href="#results_menu_panel" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-btn-icon-right ui-icon-bars ui-btn-icon-notext" >Menu</a>
+		</div>
+		<div data-role="content" id="results_content"  data-theme="a">
+        
+			<div id="results_loading_screen" class="loading_the_data"><span id="loading_text">LOADING DATA...</span></div>
+           
+            <div class="split_box my_font">
+            	<div class="left_div content_heading ">RESULTS</div>
+                <div class="right_div content_sub_heading mydate_head">SATURDAY, 13th JUNE 2015</div>
+            </div>
+            
+            
+            <div class="sub_heading my_font small_font"><span id="results_list_heading">PREMIER LEAGUE</span><a href="#results_popup_leagues"  data-rel="popup" data-transition="pop"  class="ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-icon-carat-d ui-btn-icon-notext" >Leagues</a>
+               
+             <div data-role="popup" id="results_popup_leagues" class="ui-content" data-theme="b" data-arrow="t">
+             <p><ul data-role="listview" >
+                  <li><a href="#results_list_heading" onClick="results_list_mainpage('PREMIER LEAGUE')">PREMIER LEAGUE</a></li>
+                  <li><a href="#results_list_heading" onClick="results_list_mainpage('CHAMPIONSHIP')">CHAMPIONSHIP</a></li>
+                  <li><a href="#results_list_heading" onClick="results_list_mainpage('LEAGUE 1')">LEAGUE 1</a></li>
+                  <li><a href="#results_list_heading" onClick="results_list_mainpage('LEAGUE 2')">LEAGUE 2</a></li>
+                  <li><a href="#results_list_heading" onClick="results_list_mainpage('CONFERENCE')">CONFERENCE</a></li>
+             </ul></p>
+            </div>
+    
+            </div>
+            
+            <div id="_results_data" class="fixture_content fixture_font"><p></p></div>
+            
+            
+		</div>
+        
+        <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="results_menu_panel" data-theme="b">
+                            <!-- panel content goes here -->
+              <center>Navigation</center>
+            				<div class="panel_menu_icon_wrapper" onClick="panel_change_page('prediction')" ><div class="panel_menu_img"><img src="imgs/prediction.png" /></div><div class="panel_menu_text">PREDICTIONS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('fixtures')" ><div class="panel_menu_img"><img src="imgs/fixtures.png" /></div><div class="panel_menu_text">FIXTURES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('results')" ><div class="panel_menu_img"><img src="imgs/results.png" /></div><div class="panel_menu_text">RESULTS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('tables')" ><div class="panel_menu_img"><img src="imgs/league.png" /></div><div class="panel_menu_text">TABLES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('teams')" ><div class="panel_menu_img"><img src="imgs/teams.png" /></div><div class="panel_menu_text">TEAMS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('analytics')" ><div class="panel_menu_img"><img src="imgs/analytics.png" /></div><div class="panel_menu_text">ANALYTICS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('about')" ><div class="panel_menu_img"><img src="imgs/about.png" /></div><div class="panel_menu_text">ABOUT</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="refresh_data()" ><div class="panel_menu_img"><img src="imgs/refresh.png" /></div><div class="panel_menu_text">REFRESH DATA</div></div>
+                            <div class="clear_line"> <p class="updated_text"></p></div>
+            </div><!-- /panel -->
+	</div><!-- /results -->
+    
+    
+    
+    <div data-role="page" id="tables_page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<span class="header_logo my_font large_font">The Form Book Predicts</span><br/>
+            <span class="header_logo my_font small_font">The Premier League, Football League &amp; Conference</span>
+         <a href="#tables_menu_panel" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-btn-icon-right ui-icon-bars ui-btn-icon-notext" >Menu</a>
+		</div>
+		<div data-role="content" id="league_tables_content" data-theme="a">
+			
+            <div id="tables_loading_screen" class="loading_the_data"><span id="loading_text">LOADING DATA...</span></div>
+            
+            <div class="split_box my_font">
+            	<div class="left_div content_heading ">TABLES</div>
+                <div class="right_div content_sub_heading mydate_head">SATURDAY, 13th JUNE 2015</div>
+            </div>
+            
+            
+            <div class="sub_heading my_font small_font"><span id="tables_list_heading">PREMIER LEAGUE</span><a href="#tables_popup_leagues"  data-rel="popup" data-transition="pop"  class="ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-icon-carat-d ui-btn-icon-notext" >Leagues</a>
+               
+             <div data-role="popup" id="tables_popup_leagues" class="ui-content" data-theme="b" data-arrow="t">
+             <p><ul data-role="listview" >
+                  <li><a href="#tables_list_heading" onClick="tables_list_mainpage('PREMIER LEAGUE')">PREMIER LEAGUE</a></li>
+                  <li><a href="#tables_list_heading" onClick="tables_list_mainpage('CHAMPIONSHIP')">CHAMPIONSHIP</a></li>
+                  <li><a href="#tables_list_heading" onClick="tables_list_mainpage('LEAGUE 1')">LEAGUE 1</a></li>
+                  <li><a href="#tables_list_heading" onClick="tables_list_mainpage('LEAGUE 2')">LEAGUE 2</a></li>
+                  <li><a href="#tables_list_heading" onClick="tables_list_mainpage('CONFERENCE')">CONFERENCE</a></li>
+             </ul></p>
+            </div>
+    
+            </div>
+            
+            <div id="_tables_data" class="fixture_content fixture_font"><p></p></div>
+            
+            
+		</div>
+        
+        <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="tables_menu_panel" data-theme="b">
+                            <!-- panel content goes here -->
+              <center>Navigation</center>
+            				<div class="panel_menu_icon_wrapper" onClick="panel_change_page('prediction')" ><div class="panel_menu_img"><img src="imgs/prediction.png" /></div><div class="panel_menu_text">PREDICTIONS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('fixtures')" ><div class="panel_menu_img"><img src="imgs/fixtures.png" /></div><div class="panel_menu_text">FIXTURES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('results')" ><div class="panel_menu_img"><img src="imgs/results.png" /></div><div class="panel_menu_text">RESULTS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('tables')" ><div class="panel_menu_img"><img src="imgs/league.png" /></div><div class="panel_menu_text">TABLES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('teams')" ><div class="panel_menu_img"><img src="imgs/teams.png" /></div><div class="panel_menu_text">TEAMS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('analytics')" ><div class="panel_menu_img"><img src="imgs/analytics.png" /></div><div class="panel_menu_text">ANALYTICS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('about')" ><div class="panel_menu_img"><img src="imgs/about.png" /></div><div class="panel_menu_text">ABOUT</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="refresh_data()" ><div class="panel_menu_img"><img src="imgs/refresh.png" /></div><div class="panel_menu_text">REFRESH DATA</div></div>
+                            <div class="clear_line"> <p class="updated_text"></p></div>
+            </div><!-- /panel -->
+	</div><!-- /tables -->
+    
+    
+    
+    
+    
+    
+    
+    <div data-role="page" id="prediction_page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<span class="header_logo my_font large_font">The Form Book Predicts</span><br/>
+            <span class="header_logo my_font small_font">The Premier League, Football League &amp; Conference</span>
+         <a href="#prediction_menu_panel" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-btn-icon-right ui-icon-bars ui-btn-icon-notext" >Menu</a>
+		</div>
+		<div data-role="content" id="prediction_content" data-theme="a">
+			<div id="prediction_loading_screen" class="loading_the_data"><span id="loading_text">LOADING DATA</span></div>
+            <div class="split_box my_font">
+            	<div class="left_div content_heading ">PREDICTIONS</div>
+                <div class="right_div content_sub_heading mydate_head">SATURDAY, 13th JUNE 2015</div>
+            </div>
+            
+            
+             <div id="_prediction_data" class="fixture_content fixture_font"></div>
+            
+            
+		</div>
+        
+        <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="prediction_menu_panel" data-theme="b">
+                            <!-- panel content goes here -->
+              <center>Navigation</center>
+            				<div class="panel_menu_icon_wrapper" onClick="panel_change_page('prediction')" ><div class="panel_menu_img"><img src="imgs/prediction.png" /></div><div class="panel_menu_text">PREDICTIONS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('fixtures')" ><div class="panel_menu_img"><img src="imgs/fixtures.png" /></div><div class="panel_menu_text">FIXTURES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('results')" ><div class="panel_menu_img"><img src="imgs/results.png" /></div><div class="panel_menu_text">RESULTS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('tables')" ><div class="panel_menu_img"><img src="imgs/league.png" /></div><div class="panel_menu_text">TABLES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('teams')" ><div class="panel_menu_img"><img src="imgs/teams.png" /></div><div class="panel_menu_text">TEAMS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('analytics')" ><div class="panel_menu_img"><img src="imgs/analytics.png" /></div><div class="panel_menu_text">ANALYTICS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('about')" ><div class="panel_menu_img"><img src="imgs/about.png" /></div><div class="panel_menu_text">ABOUT</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="refresh_data()" ><div class="panel_menu_img"><img src="imgs/refresh.png" /></div><div class="panel_menu_text">REFRESH DATA</div></div>
+                            <div class="clear_line"> <p class="updated_text"></p></div>
+            </div><!-- /panel -->
+	</div><!-- /prediction -->
+    
+    
+    
+    
+    
+    
+    
+    <div data-role="page" id="teams_page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<span class="header_logo my_font large_font">The Form Book Predicts</span><br/>
+            <span class="header_logo my_font small_font">The Premier League, Football League &amp; Conference</span>
+         <a href="#teams_menu_panel" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-btn-icon-right ui-icon-bars ui-btn-icon-notext" >Menu</a>
+		</div>
+		<div data-role="content" id="teams_content" data-theme="a">
+			
+            <div id="teams_loading_screen" class="loading_the_data"><span id="loading_text">LOADING DATA...</span></div>
+            
+            <div class="split_box my_font">
+            	<div class="left_div content_heading ">TEAMS</div>
+                <div class="right_div content_sub_heading mydate_head">SATURDAY, 13th JUNE 2015</div>
+            </div>
+            
+             <div id="_teams_data" class="fixture_content fixture_font teams_select"></div>
+        </div>
+        
+        
+        <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="teams_menu_panel" data-theme="b">
+                            <!-- panel content goes here -->
+              <center>Navigation</center>
+            				<div class="panel_menu_icon_wrapper" onClick="panel_change_page('prediction')" ><div class="panel_menu_img"><img src="imgs/prediction.png" /></div><div class="panel_menu_text">PREDICTIONS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('fixtures')" ><div class="panel_menu_img"><img src="imgs/fixtures.png" /></div><div class="panel_menu_text">FIXTURES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('results')" ><div class="panel_menu_img"><img src="imgs/results.png" /></div><div class="panel_menu_text">RESULTS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('tables')" ><div class="panel_menu_img"><img src="imgs/league.png" /></div><div class="panel_menu_text">TABLES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('teams')" ><div class="panel_menu_img"><img src="imgs/teams.png" /></div><div class="panel_menu_text">TEAMS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('analytics')" ><div class="panel_menu_img"><img src="imgs/analytics.png" /></div><div class="panel_menu_text">ANALYTICS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('about')" ><div class="panel_menu_img"><img src="imgs/about.png" /></div><div class="panel_menu_text">ABOUT</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="refresh_data()" ><div class="panel_menu_img"><img src="imgs/refresh.png" /></div><div class="panel_menu_text">REFRESH DATA</div></div>
+                            <div class="clear_line"> <p class="updated_text"></p></div>
+            </div><!-- /panel -->
+	</div><!-- /teams_page -->
+    
+    
+    
+    
+      
+    <div data-role="page" id="stats_team" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<span class="header_logo my_font large_font">The Form Book Predicts</span><br/>
+            <span class="header_logo my_font small_font">The Premier League, Football League &amp; Conference</span>
+         <a href="#my_team_menu_panel" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-btn-icon-right ui-icon-bars ui-btn-icon-notext" >Menu</a>
+		</div>
+		<div data-role="content" id="stats_content" data-theme="a">
+			<div id="teamstats_loading_screen" class="loading_the_data"><span id="loading_text">LOADING DATA...</span></div>
+            <div class="split_box my_font">
+            	<div class="left_div content_heading "><span onClick="backtoteams()"><img src="imgs/backArrow.png" width="10" height="10" /> TEAMS</span></div>
+                <div class="right_div content_sub_heading mydate_head">SATURDAY, 13th JUNE 2015</div>
+            </div>
+            <div class="clear_line"></div>
+            <div id="team_fixtures_head" class="three_split smallfont_gap" onClick="show_fixtures_team()">FIXTURES</div><div class="three_split"><span id="team_name_heading" data-sqlleague="prem" data-sqlteam="Team" >TEAM</span></div><div id="team_results_head" class="three_split smallfont_gap" onClick="show_results_team()">RESULTS</div>
+            
+            
+             <div id="_stats_data" class="fixture_content fixture_font teams_select"></div>
+        </div>
+        <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="my_team_menu_panel" data-theme="b">
+                            <!-- panel content goes here -->
+              <center>Navigation</center>
+            				<div class="panel_menu_icon_wrapper" onClick="panel_change_page('prediction')" ><div class="panel_menu_img"><img src="imgs/prediction.png" /></div><div class="panel_menu_text">PREDICTIONS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('fixtures')" ><div class="panel_menu_img"><img src="imgs/fixtures.png" /></div><div class="panel_menu_text">FIXTURES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('results')" ><div class="panel_menu_img"><img src="imgs/results.png" /></div><div class="panel_menu_text">RESULTS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('tables')" ><div class="panel_menu_img"><img src="imgs/league.png" /></div><div class="panel_menu_text">TABLES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('teams')" ><div class="panel_menu_img"><img src="imgs/teams.png" /></div><div class="panel_menu_text">TEAMS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('analytics')" ><div class="panel_menu_img"><img src="imgs/analytics.png" /></div><div class="panel_menu_text">ANALYTICS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('about')" ><div class="panel_menu_img"><img src="imgs/about.png" /></div><div class="panel_menu_text">ABOUT</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="refresh_data()" ><div class="panel_menu_img"><img src="imgs/refresh.png" /></div><div class="panel_menu_text">REFRESH DATA</div></div>
+                            <div class="clear_line"> <p class="updated_text"></p></div>
+            </div><!-- /panel -->
+	</div><!-- /stats_team -->
+    
+    
+    
+    
+    
+    <div data-role="page" id="head2head_page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<span class="header_logo my_font large_font">The Form Book Predicts</span><br/>
+            <span class="header_logo my_font small_font">The Premier League, Football League &amp; Conference</span>
+         <a href="#head2head_menu_panel" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-btn-icon-right ui-icon-bars ui-btn-icon-notext" >Menu</a>
+		</div>
+		<div data-role="content" id="head2head_content" data-theme="a">
+			<div id="head2head_loading_screen" class="loading_the_data"><span id="loading_text">LOADING DATA...</span></div>
+            <div class="split_box my_font">
+            	<div class="left_div content_heading "><span onClick="backtofixtures()"><img src="imgs/backArrow.png" width="10" height="10" /> BACK</span></div>
+                <div class="right_div content_sub_heading mydate_head">SATURDAY, 13th JUNE 2015</div>
+            </div>
+            <div class="clear_line"></div>
+                 <div class="center_title fixture_font">HEAD TO HEAD</div>
+            
+             <div id="_head2head_data" class="fixture_content fixture_font teams_select"></div>
+             <div id="_head2head_data_table" class="fixture_font"></div>
+             <div id="_head2head_data_form" class="fixture_font">
+                     <div class="head2head_statbox">
+                     	<div id="home_team_form_box" class="form_wrap">
+                        	<div class="small_title_form">HOME TEAM</div>
+                            <div id="home_team_title_form" class="large_title_form"></div>
+                            <div class="small_title_form">LAST 6 GAMES</div>
+                            <div id="home_form_data"></div>
+                            <div class="small_title_form">LAST 6 HOME GAMES</div>
+                            <div id="home_form_data_l"></div>
+                        </div>
+                     </div>
+                     <div class="seperator_bar"></div>
+                     <div class="head2head_statbox">
+                     	<div id="away_team_form_box" class="form_wrap">
+                     		<div class="small_title_form">AWAY TEAM</div>
+                         	<div id="away_team_title_form" class="large_title_form"></div>
+                            <div class="small_title_form">LAST 6 GAMES</div>
+                            <div id="away_form_data"></div>
+                            <div class="small_title_form">LAST 6 AWAY GAMES</div>
+                            <div id="away_form_data_l"></div>
+                     	</div>                       
+                     </div> 
+             </div>
+             
+             	<div id="h2h_previous_fixture" class="fixture_font"></div>
+                <div id="h2h_prediction_fixture" class="fixture_font"></div>
+             
+        </div>
+        <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="head2head_menu_panel" data-theme="b">
+                            <!-- panel content goes here -->
+              <center>Navigation</center>
+            				<div class="panel_menu_icon_wrapper" onClick="panel_change_page('prediction')" ><div class="panel_menu_img"><img src="imgs/prediction.png" /></div><div class="panel_menu_text">PREDICTIONS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('fixtures')" ><div class="panel_menu_img"><img src="imgs/fixtures.png" /></div><div class="panel_menu_text">FIXTURES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('results')" ><div class="panel_menu_img"><img src="imgs/results.png" /></div><div class="panel_menu_text">RESULTS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('tables')" ><div class="panel_menu_img"><img src="imgs/league.png" /></div><div class="panel_menu_text">TABLES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('teams')" ><div class="panel_menu_img"><img src="imgs/teams.png" /></div><div class="panel_menu_text">TEAMS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('analytics')" ><div class="panel_menu_img"><img src="imgs/analytics.png" /></div><div class="panel_menu_text">ANALYTICS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('about')" ><div class="panel_menu_img"><img src="imgs/about.png" /></div><div class="panel_menu_text">ABOUT</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="refresh_data()" ><div class="panel_menu_img"><img src="imgs/refresh.png" /></div><div class="panel_menu_text">REFRESH DATA</div></div>
+                            <div class="clear_line"> <p class="updated_text"></p></div>
+            </div><!-- /panel -->
+	</div><!-- /stats_team -->
+    
+    
+    
+    
+    
+    <div data-role="page" id="analytics_page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<span class="header_logo my_font large_font">The Form Book Predicts</span><br/>
+            <span class="header_logo my_font small_font">The Premier League, Football League &amp; Conference</span>
+         <a href="#analytics_menu_panel" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-btn-icon-right ui-icon-bars ui-btn-icon-notext" >Menu</a>
+		</div>
+		<div data-role="content" id="analytics_content" data-theme="a">
+			
+            <div id="analytics_loading_screen" class="loading_the_data"><span id="loading_text">LOADING DATA...</span></div>
+             
+            <div class="split_box my_font">
+            	<div class="left_div content_heading ">ANALYTICS</div>
+                <div class="right_div content_sub_heading mydate_head">SATURDAY, 13th JUNE 2015</div>
+            </div>
+            
+            
+            <div class="sub_heading my_font small_font"><span id="analytics_list_heading" data-leaguename="prem">PREMIER LEAGUE</span><a href="#analytics_popup_leagues"  data-rel="popup" data-transition="pop"  class="ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-icon-carat-d ui-btn-icon-notext" >Leagues</a>
+               
+             <div data-role="popup" id="analytics_popup_leagues" class="ui-content" data-theme="b" data-arrow="t">
+             <p><ul data-role="listview" >
+                  <li><a href="#analytics_list_heading" onClick="analytics('premier')">PREMIER LEAGUE</a></li>
+                  <li><a href="#analytics_list_heading" onClick="analytics('champ')">CHAMPIONSHIP</a></li>
+                  <li><a href="#analytics_list_heading" onClick="analytics('league1')">LEAGUE 1</a></li>
+                  <li><a href="#analytics_list_heading" onClick="analytics('league2')">LEAGUE 2</a></li>
+                  <li><a href="#analytics_list_heading" onClick="analytics('conference')">CONFERENCE</a></li>
+             </ul></p>
+            </div>
+    
+            </div>
+            
+            <div id="_analytics_data" class="fixture_content fixture_font"><p></p></div>
+           
+            
+		</div>
+        
+        <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="analytics_menu_panel" data-theme="b">
+                            <!-- panel content goes here -->
+              <center>Navigation</center>
+            				<div class="panel_menu_icon_wrapper" onClick="panel_change_page('prediction')" ><div class="panel_menu_img"><img src="imgs/prediction.png" /></div><div class="panel_menu_text">PREDICTIONS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('fixtures')" ><div class="panel_menu_img"><img src="imgs/fixtures.png" /></div><div class="panel_menu_text">FIXTURES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('results')" ><div class="panel_menu_img"><img src="imgs/results.png" /></div><div class="panel_menu_text">RESULTS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('tables')" ><div class="panel_menu_img"><img src="imgs/league.png" /></div><div class="panel_menu_text">TABLES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('teams')" ><div class="panel_menu_img"><img src="imgs/teams.png" /></div><div class="panel_menu_text">TEAMS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('analytics')" ><div class="panel_menu_img"><img src="imgs/analytics.png" /></div><div class="panel_menu_text">ANALYTICS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('about')" ><div class="panel_menu_img"><img src="imgs/about.png" /></div><div class="panel_menu_text">ABOUT</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="refresh_data()" ><div class="panel_menu_img"><img src="imgs/refresh.png" /></div><div class="panel_menu_text">REFRESH DATA</div></div>
+                            <div class="clear_line"> <p class="updated_text"></p></div>
+                           
+            </div><!-- /panel -->
+	</div><!-- /analytics -->
+    
+    
+    
+    <div data-role="page" id="about_page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<span class="header_logo my_font large_font">The Form Book Predicts</span><br/>
+            <span class="header_logo my_font small_font">The Premier League, Football League &amp; Conference</span>
+         <a href="#about_menu_panel" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-nodisc-icon noiconbg ui-btn-icon-right ui-icon-bars ui-btn-icon-notext" >Menu</a>
+		</div>
+		<div data-role="content" id="about_content" data-theme="a">
+		            
+            <div id="_about_data" class="fixture_content fixture_font">
+            
+            <h1>How The Prediction Works.</h1>
+            <p>When predicting each fixture the app first gets the league position of both teams. </p>
+<p>The app then finds the last six home games the home team has played. Whilst also finding the last six away games the away team has played. </p>
+<p>Next, using the league position the app finds the last six home games the home team has played, which were against teams in the same half of the league as the away team. (The league position is that of last season’s finish position if the date is before 20th of September). </p>
+<p>This step is repeated for the away team. Finding the last six away games they played against teams in the same half of the league as the home team. </p>
+<p>Next the app then uses all the data from the current season and last season to find fixtures the home team has played at home against teams within two positions of the away team. This is repeated for the away team and their away fixtures. </p>
+<p>Then the app looks at the form of each team and selects the last six games both home and away for each team. </p>
+<p>Now the app has all the data it needs it looks at each fixture and analyses them. After which the app makes a prediction based purely on the relevant past fixtures. </p>
+<p>The predictions made are in no way what is actually going to happen. But the predictions are what is most likely to happen. </p>
+<p>The app is still in development and hopefully in the future I will be able to expand on what data is available for the app to use.   </p>
+<p>Thank you for reading. </p>
+<p>If you're a developer and would like to get in touch email me at kevin.teal1@gmail.com </p>
+            </div>
+           
+            
+		</div>
+        
+        <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="about_menu_panel" data-theme="b">
+                            <!-- panel content goes here -->
+              <center>Navigation</center>
+            				<div class="panel_menu_icon_wrapper" onClick="panel_change_page('prediction')" ><div class="panel_menu_img"><img src="imgs/prediction.png" /></div><div class="panel_menu_text">PREDICTIONS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('fixtures')" ><div class="panel_menu_img"><img src="imgs/fixtures.png" /></div><div class="panel_menu_text">FIXTURES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('results')" ><div class="panel_menu_img"><img src="imgs/results.png" /></div><div class="panel_menu_text">RESULTS</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('tables')" ><div class="panel_menu_img"><img src="imgs/league.png" /></div><div class="panel_menu_text">TABLES</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="panel_change_page('teams')" ><div class="panel_menu_img"><img src="imgs/teams.png" /></div><div class="panel_menu_text">TEAMS</div></div>
+                             <div class="panel_menu_icon_wrapper" onClick="panel_change_page('analytics')" ><div class="panel_menu_img"><img src="imgs/analytics.png" /></div><div class="panel_menu_text">ANALYTICS</div></div>
+                              <div class="panel_menu_icon_wrapper" onClick="panel_change_page('about')" ><div class="panel_menu_img"><img src="imgs/about.png" /></div><div class="panel_menu_text">ABOUT</div></div>
+                            <div class="panel_menu_icon_wrapper" onClick="refresh_data()" ><div class="panel_menu_img"><img src="imgs/refresh.png" /></div><div class="panel_menu_text">REFRESH DATA</div></div>
+                            <div class="clear_line"> <p class="updated_text"></p></div>
+                           
+            </div><!-- /panel -->
+	</div><!-- /about -->
+    
+    
+</body>
+</html>
