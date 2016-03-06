@@ -28,7 +28,12 @@
     <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
 	</feature>
 	<access origin="*"/>
-	
+	<allow-navigation href="*" />
+	<allow-intent href="http://*/*" />
+	<access origin="content:///*" />
+<allow-intent href="https://*/*" />
+
+
     <icon src="icon48.png" />
     <icon gap:density="ldpi" gap:platform="android" src="icon36.png" />
     <icon gap:density="mdpi" gap:platform="android" src="icon48.png" />
