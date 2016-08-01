@@ -103,7 +103,7 @@ function results_setup(league){
 	if(data_in=="<p></p>"){
 		//load in results for prem
 		db.transaction(function (tx) {	
-			tx.executeSql(' SELECT * FROM '+league+'_season2015 order by Match_Date desc ', [], function(tx, results){
+			tx.executeSql(' SELECT * FROM '+league+'_season2016 order by Match_Date desc ', [], function(tx, results){
 			var len = results.rows.length, i;
 			var fixture_date_heading = 0;
 			var content = "";
@@ -348,7 +348,7 @@ function team_selected_get_results(team, league){
 	
 	db.transaction(function (tx) {	
 
-		tx.executeSql(' SELECT * FROM '+league+'_season2015 where Home_Team="'+team+'" or Away_Team="'+team+'" order by Match_Date desc ', [], function(tx, results){
+		tx.executeSql(' SELECT * FROM '+league+'_season2016 where Home_Team="'+team+'" or Away_Team="'+team+'" order by Match_Date desc ', [], function(tx, results){
 			
 			var len = results.rows.length, i;
 			var hometeam_highlight = "highlight_team";
@@ -659,7 +659,7 @@ function head2head_load(home_team,away_team,league,matchdate){
 	//get season form for each team.
 	var form_content="";
 	
-	tx.executeSql(' SELECT * FROM '+league+'_season2015 where Home_Team="'+home_team+'" or Away_Team="'+home_team+'" order by Match_Date desc limit 6 ', [], function(tx, results){
+	tx.executeSql(' SELECT * FROM '+league+'_season2016 where Home_Team="'+home_team+'" or Away_Team="'+home_team+'" order by Match_Date desc limit 6 ', [], function(tx, results){
 			
 			var len = results.rows.length, i;
 			
@@ -707,7 +707,7 @@ function head2head_load(home_team,away_team,league,matchdate){
 	
 	var form_content2="";
 	
-	tx.executeSql(' SELECT * FROM '+league+'_season2015 where Home_Team="'+away_team+'" or Away_Team="'+away_team+'" order by Match_Date desc limit 6 ', [], function(tx, results){
+	tx.executeSql(' SELECT * FROM '+league+'_season2016 where Home_Team="'+away_team+'" or Away_Team="'+away_team+'" order by Match_Date desc limit 6 ', [], function(tx, results){
 			
 			var len = results.rows.length, i;
 			
@@ -763,7 +763,7 @@ function head2head_load(home_team,away_team,league,matchdate){
 	
 		var form_content3="";
 	
-	tx.executeSql(' SELECT * FROM '+league+'_season2015 where Home_Team="'+home_team+'" order by Match_Date desc limit 6 ', [], function(tx, results){
+	tx.executeSql(' SELECT * FROM '+league+'_season2016 where Home_Team="'+home_team+'" order by Match_Date desc limit 6 ', [], function(tx, results){
 			
 			var len = results.rows.length, i;
 			
@@ -799,7 +799,7 @@ function head2head_load(home_team,away_team,league,matchdate){
 	
 	var form_content4="";
 	
-	tx.executeSql(' SELECT * FROM '+league+'_season2015 where Away_Team="'+away_team+'" order by Match_Date desc limit 6 ', [], function(tx, results){
+	tx.executeSql(' SELECT * FROM '+league+'_season2016 where Away_Team="'+away_team+'" order by Match_Date desc limit 6 ', [], function(tx, results){
 			
 			var len = results.rows.length, i;
 			
@@ -835,7 +835,7 @@ function head2head_load(home_team,away_team,league,matchdate){
 		
 		
 		//get reverse fixture
-		tx.executeSql('SELECT Home_Goals,Away_Goals FROM '+league+'_season2015 where Home_Team="'+away_team+'" AND Away_Team="'+home_team+'" ORDER BY Match_Date desc limit 1', [], function(tx, results){
+		tx.executeSql('SELECT Home_Goals,Away_Goals FROM '+league+'_season2016 where Home_Team="'+away_team+'" AND Away_Team="'+home_team+'" ORDER BY Match_Date desc limit 1', [], function(tx, results){
 			
 			var len = results.rows.length, i;
 			

@@ -26,11 +26,11 @@ db.transaction(function (tx) {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS league2_fixtures (Match_Date TEXT, Home_Team TEXT, Away_Team TEXT, Kickoff TEXT, p_h_goals INTEGER, p_a_goals INTEGER, PRIMARY KEY(Match_Date,Home_Team,Away_Team))');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS conference_fixtures (Match_Date TEXT, Home_Team TEXT, Away_Team TEXT, Kickoff TEXT, p_h_goals INTEGER, p_a_goals INTEGER, PRIMARY KEY(Match_Date,Home_Team,Away_Team))');
 		
-		tx.executeSql('CREATE TABLE IF NOT EXISTS premier_season2015 (Home_Team TEXT, Away_Team TEXT, Home_Goals INTEGER, Away_Goals INTEGER, Match_Date TEXT, PRIMARY KEY(Match_Date,Home_Team,Away_Team))');
-		tx.executeSql('CREATE TABLE IF NOT EXISTS champ_season2015 (Home_Team TEXT, Away_Team TEXT, Home_Goals INTEGER, Away_Goals INTEGER, Match_Date TEXT, PRIMARY KEY(Match_Date,Home_Team,Away_Team))');
-		tx.executeSql('CREATE TABLE IF NOT EXISTS league1_season2015 (Home_Team TEXT, Away_Team TEXT, Home_Goals INTEGER, Away_Goals INTEGER, Match_Date TEXT, PRIMARY KEY(Match_Date,Home_Team,Away_Team))');
-		tx.executeSql('CREATE TABLE IF NOT EXISTS league2_season2015 (Home_Team TEXT, Away_Team TEXT, Home_Goals INTEGER, Away_Goals INTEGER, Match_Date TEXT, PRIMARY KEY(Match_Date,Home_Team,Away_Team))');
-		tx.executeSql('CREATE TABLE IF NOT EXISTS conference_season2015 (Home_Team TEXT, Away_Team TEXT, Home_Goals INTEGER, Away_Goals INTEGER, Match_Date TEXT, PRIMARY KEY(Match_Date,Home_Team,Away_Team))');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS premier_season2016 (Home_Team TEXT, Away_Team TEXT, Home_Goals INTEGER, Away_Goals INTEGER, Match_Date TEXT, PRIMARY KEY(Match_Date,Home_Team,Away_Team))');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS champ_season2016 (Home_Team TEXT, Away_Team TEXT, Home_Goals INTEGER, Away_Goals INTEGER, Match_Date TEXT, PRIMARY KEY(Match_Date,Home_Team,Away_Team))');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS league1_season2016 (Home_Team TEXT, Away_Team TEXT, Home_Goals INTEGER, Away_Goals INTEGER, Match_Date TEXT, PRIMARY KEY(Match_Date,Home_Team,Away_Team))');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS league2_season2016 (Home_Team TEXT, Away_Team TEXT, Home_Goals INTEGER, Away_Goals INTEGER, Match_Date TEXT, PRIMARY KEY(Match_Date,Home_Team,Away_Team))');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS conference_season2016 (Home_Team TEXT, Away_Team TEXT, Home_Goals INTEGER, Away_Goals INTEGER, Match_Date TEXT, PRIMARY KEY(Match_Date,Home_Team,Away_Team))');
 		
 		
 		tx.executeSql('CREATE TABLE IF NOT EXISTS predictions (League TEXT, Home_Team TEXT, Away_Team TEXT, Home_Goals INTEGER, Away_Goals INTEGER, Real_Home_Goals INTEGER, Real_Away_Goals INTEGER, Match_Date TEXT)');
@@ -41,6 +41,15 @@ db.transaction(function (tx) {
 
 db.transaction(function (tx) {	
 	tx.executeSql('INSERT INTO time_log (tid,data_time) VALUES (1,"Sat Jul 04 2015 15:27:31 GMT+0100 (GMT Daylight Time)")');
+});
+
+//drop table for old season results 
+db.transaction(function (tx) {	
+	tx.executeSql('DROP TABLE IF EXISTS premier_season2015 ');
+	tx.executeSql('DROP TABLE IF EXISTS champ_season2015 ');
+	tx.executeSql('DROP TABLE IF EXISTS league1_season2015 ');
+	tx.executeSql('DROP TABLE IF EXISTS league2_season2015 ');
+	tx.executeSql('DROP TABLE IF EXISTS conference_season2015 ');
 });
 
 //counter to make sure everything has loaded before loading screen ends 
@@ -132,14 +141,14 @@ function season_json(league){
 	.done(function( json ) {
 		$("#main_loading_screen").html("LOADING DATA...<br/>"+league+" Table");
 		db.transaction(function (tx) {	
-			tx.executeSql('DELETE FROM '+league+'_season2015');
+			tx.executeSql('DELETE FROM '+league+'_season2016');
 			});
     	//console.log( "JSON Data: " + json.position);
 		db.transaction(function (tx) {	
 		$.each(json,function(key,val){
 			//console.log(val.Home_Team + " " + val.Home_Goals + " - " + val.Away_Goals + " " + val.Away_Team +" "+val.date);
 			
-			tx.executeSql('INSERT INTO '+league+'_season2015 (Home_Team, Away_Team, Home_Goals, Away_Goals, Match_Date) VALUES ("'+val.Home_Team+'", "'+val.Away_Team+'", '+val.Home_Goals+', '+val.Away_Goals+', "'+val.date+'")');
+			tx.executeSql('INSERT INTO '+league+'_season2016 (Home_Team, Away_Team, Home_Goals, Away_Goals, Match_Date) VALUES ("'+val.Home_Team+'", "'+val.Away_Team+'", '+val.Home_Goals+', '+val.Away_Goals+', "'+val.date+'")');
 			});
 		});
 		console.log("Success json season for "+league);
